@@ -3,6 +3,9 @@
 
 class Digraph(object):
     """
+    Destiny: The beauty of programming.
+    Title:   The longest of subsentence.
+    Method Theory:  Digraph
     e.g.
         key, val
         I love
