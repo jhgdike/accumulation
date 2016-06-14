@@ -28,4 +28,3 @@ def decode_file(f_read):
             continue
 
     raise Exception('解码失败')
-

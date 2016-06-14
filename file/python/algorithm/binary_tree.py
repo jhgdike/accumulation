@@ -1,7 +1,40 @@
 # coding: utf-8
 
 
-class SimpleBinaryTrue(object):
+class SimpleBinaryTree(object):
+    """
+    简单的二叉树,用字典生成,拥有添加,删除,搜索和遍历功能
+    e.g.
+        bt = SimpleBinaryTree()
+        bt.add(20)
+        bt.add(10)
+        bt.add(30)
+        bt.add(15)
+        bt._root
+        = >
+            {
+                'count': 1,
+                'left': {
+                    'count': 1,
+                    'left': {},
+                    'right': {
+                        'count': 1,
+                        'left': {},
+                        'right': {},
+                        'val': 15
+                        },
+                    'val': 10
+                    },
+                'right': {
+                    'count': 1,
+                    'left': {},
+                    'right': {},
+                    'val': 30
+                    },
+                'val': 20
+            }
+
+    """
 
     def __init__(self):
         self._root = {}
@@ -23,6 +56,9 @@ class SimpleBinaryTrue(object):
             self._add(node['right'], val)
         else:
             node['count'] += 1
+
+    def search(self, val):
+        pass
 
     def delete(self, val):
         if not isinstance(val, int) or not isinstance(val, float):
@@ -55,3 +91,45 @@ class SimpleBinaryTrue(object):
             if node['count']:
                 self._order.append(node['val'])
             self._travel_sal(node['right'])
+
+
+class BinaryTree(object):
+    left = None
+    right = None
+    val = None
+    count = 0
+
+    def add(self, val):
+        if not isinstance(val, int) and not isinstance(val, float):
+            raise (ValueError, 'int or float needed')
+        self._add(val)
+
+    def _add(self, val):
+        if not self.val:
+            self.val = val
+        elif val > self.val:
+            if not self.right:
+                self.right = BinaryTree()
+            self.right.add(val)
+        elif val < self.val:
+            if not self.left:
+                self.left = BinaryTree()
+            self.left.add(val)
+        else:
+            self.count += 1
+
+    def search(self, val):
+        pass
+
+    def delete(self, val):
+        pass
+
+    def travel(self):
+        order = []
+        if self.val:
+            if self.left:
+                order.extend(self.left.travel())
+            order.append(self.val)
+            if self.right:
+                order.extend(self.right.travel())
+        return order
