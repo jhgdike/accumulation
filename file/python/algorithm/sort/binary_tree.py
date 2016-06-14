@@ -36,9 +36,10 @@ class SimpleBinaryTree(object):
 
     """
 
-    def __init__(self):
+    def __init__(self, unique=False):
         self._root = {}
         self._order = None
+        self.unique = unique
 
     def add(self, val):
         if not isinstance(val, int) and not isinstance(val, float):
@@ -55,6 +56,8 @@ class SimpleBinaryTree(object):
         elif val > node['val']:
             self._add(node['right'], val)
         else:
+            if self.unique:
+                raise(ValueError, '{} exists'.format(val))
             node['count'] += 1
 
     def search(self, val):
@@ -71,7 +74,10 @@ class SimpleBinaryTree(object):
             raise(ValueError, 'no such value')
         if val == node['val']:
             if node['count']:
-                node['count'] -= 1
+                if self.unique:
+                    node['count'] = 0
+                else:
+                    node['count'] -= 1
             else:
                 raise(ValueError, 'no such value')
         elif val < node['val']:
@@ -94,10 +100,20 @@ class SimpleBinaryTree(object):
 
 
 class BinaryTree(object):
+    """
+    e.g.
+        root.val
+        root.left - > node
+        root.right - > node
+        root.count
+    """
     left = None
     right = None
     val = None
     count = 0
+
+    def __init__(self, unique=False):
+        self.unique = unique
 
     def add(self, val):
         if not isinstance(val, int) and not isinstance(val, float):
@@ -116,10 +132,21 @@ class BinaryTree(object):
                 self.left = BinaryTree()
             self.left.add(val)
         else:
+            if self.unique:
+                raise(ValueError, '{} exists'.format(val))
             self.count += 1
 
     def search(self, val):
-        pass
+        self._search(self, val)
+
+    def _search(self, node, val):
+        if not node:
+            return False
+        if node.val == val:
+            return True
+        elif node.val < val:
+            return self._search(node.right, val)
+        return self._search(node.left, val)
 
     def delete(self, val):
         pass

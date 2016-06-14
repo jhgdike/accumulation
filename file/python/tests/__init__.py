@@ -1,3 +1,9 @@
 # coding: utf-8
 
-# test!!!
+from unittest import TestCase
+
+
+class BaseTestCase(TestCase):
+
+    def setUp(self):
+        pass
