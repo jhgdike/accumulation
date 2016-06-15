@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import os
-import sys
 import unittest
-
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from algorithm.sort.binary_tree import BinaryTree, SimpleBinaryTree
 from tests import BaseTestCase as TestCase
