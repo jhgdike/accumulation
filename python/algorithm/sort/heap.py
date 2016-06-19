@@ -1,6 +1,10 @@
 # coding: utf-8
 
 
+def swap(heap, i, j):
+    heap[i], heap[j] = heap[j], heap[i]
+
+
 class Heap(object):
 
     heap = None
@@ -9,15 +13,16 @@ class Heap(object):
         self.heap = heap or []
         self.length = len(heap)
         # self._heap_list(0)
-        self._heap_list_loop()
+        self._heappify()
 
-    def insert(self, val):
+    def push(self, val):
         self.heap.append(val)
+        i = self.length
         self.length += 1
         while i > 0:
             j = (i - 1) / 2
             if self.heap[i] < self.heap[j]:
-                self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
+                swap(self.heap, i, j)
             i = j
 
     def _heap_list_recursion(self, index):
@@ -27,32 +32,32 @@ class Heap(object):
             self._heap_list_recursion(left + 1)
         self._cmp_and_swp(index, left, self.length)
 
-    def swap(self, a, b):
-        self.heap[a], self.heap[b] = self.heap[b], self.heap[a]
-
-    def _heap_list_loop(self):
+    def _heappify(self, heap):
+        """init the heap or called heapify"""
         for i in xrange(self.length - 1, 0, -1):
             j = (i - 1) / 2
-            if self.heap[i] < self.heap[j]:
-                self.swap(i, j)
+            if heap[i] < heap[j]:
+                swap(heap, i, j)
 
     def _cmp_and_swp(self, father, child, n):
         if child + 1 < n:
             if self.heap[child] < self.heap[child + 1] and \
                     self.heap[child] < self.heap[father]:
-                self.swap(father, child)
+                swap(self.heap, father, child)
                 return child
             elif self.heap[child + 1] < self.heap[child] and \
                     self.heap[child + 1] < self.heap[father]:
-                self.swap(child + 1, father)
+                swap(self.heap, child + 1, father)
                 return child + 1
         elif child < n:
             if self.heap[child] < self.heap[father]:
-                self.swap(father, child)
+                swap(self.heap, father, child)
                 return child
         return father
 
-    def _delete(self, n):
+    def _delete(self, n=None):
+        if not n:
+            n = len(self.heap)
         self.heap[0], self.heap[n] = self.heap[n], self.heap[0]
         i = 0
         while True:
@@ -66,6 +71,11 @@ class Heap(object):
                 if i == index:
                     return
                 i = index
+
+    def pop(self):
+        self._delete()
+        self.length -= 1
+        return self.heap.pop()
 
     def sort(self):
         for i in range(self.length - 1, 0, -1):
