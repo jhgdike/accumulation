@@ -3,5 +3,11 @@ COMMAND    =  'help clean'
 help:
 	@echo $(COMMAND)
 
+test:
+	@py.test file/python/tests/$(name)
+
 clean:
-	@rm -rf *.pyc *.o
+	@find . -name '*.pyc' -and -name '*.o' -type f -delete
+
+unittest:
+	@py.test --capture=no --exitfirst python/tests/$(name)
