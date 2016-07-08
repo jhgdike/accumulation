@@ -13,7 +13,6 @@ class Heap(object):
         self.heap = heap or []
         self.length = len(heap)
         # self._heap_list(0)
-        self._heappify()
 
     def push(self, val):
         self.heap.append(val)

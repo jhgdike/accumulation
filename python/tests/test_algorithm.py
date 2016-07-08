@@ -36,8 +36,9 @@ class HeapTest(TestCase):
     def test_heap(self):
         a = [9, 12, 17, 30, 50, 20, 60, 65, 4, 49]
         heap = Heap(a)
+        heap._heappify(a)
         heap.sort()
-        assert heap.heap == [65, 60, 50, 49, 30, 20, 17, 12, 9, 4]
+        assert a == [65, 60, 50, 49, 30, 20, 17, 12, 9, 4]
 
 
 if __name__ == '__main__':

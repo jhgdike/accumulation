@@ -4,7 +4,7 @@ help:
 	@echo $(COMMAND)
 
 test:
-	@py.test file/python/tests/$(name)
+	@py.test python/tests/$(name)
 
 clean:
 	@find . -name '*.pyc' -and -name '*.o' -type f -delete
