@@ -26,7 +26,7 @@ class Heap(object):
 
     def _heap_list_recursion(self, index):
         left = 2 * index + 1
-        if 2 * (index + 1) < self.length:
+        if left < self.length:
             self._heap_list_recursion(left)
             self._heap_list_recursion(left + 1)
         self._cmp_and_swp(index, left, self.length)
