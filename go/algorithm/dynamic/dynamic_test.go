@@ -19,3 +19,11 @@ func TestCompleteBackPack(t *testing.T) {
 func TestMultiBackPack(t *testing.T) {
     MultiBackPack()
 }
+
+func TestLCS(t *testing.T) {
+    LCS([]byte("adsijlqwerqadfasfdaewrtqw"), []byte("aisdfjoalqejwrtqlwejrasdfafdill"))
+}
+
+func TestChangeStr(t *testing.T) {
+    ChangeStr([]byte("sailn"), []byte("failing"))
+}
