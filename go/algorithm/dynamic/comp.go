@@ -28,10 +28,18 @@ func minByte(a, b byte) byte {
     return b
 }
 
-func minArry(a ...int) int {
+func minArray(a ...int) int {
     tmp := a[0]
     for i := 1; i < len(a); i ++ {
         tmp = min(tmp, a[i])
+    }
+    return tmp
+}
+
+func maxArray(a ...int) int {
+    tmp := a[0]
+    for i := 1; i < len(a); i ++ {
+        tmp = max(tmp, a[i])
     }
     return tmp
 }
