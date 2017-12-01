@@ -1,6 +1,9 @@
 package dynamic
 
-import "testing"
+import (
+    "testing"
+    "fmt"
+)
 
 func TestMakeChange(t *testing.T) {
     valueKinds := []int{25, 21, 10, 5, 1}
@@ -25,5 +28,5 @@ func TestLCS(t *testing.T) {
 }
 
 func TestChangeStr(t *testing.T) {
-    ChangeStr([]byte("sailn"), []byte("failing"))
+    fmt.Println(ChangeStr([]byte("sailn"), []byte("failing")) == SChangeStr([]byte("sailn"), []byte("failing")))
 }

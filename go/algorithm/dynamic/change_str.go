@@ -2,7 +2,7 @@ package dynamic
 
 import "fmt"
 
-func ChangeStr(src, des []byte) {
+func ChangeStr(src, des []byte) int {
     // 两个字符串间的编辑距离
 
     res := [100][100]int{}
@@ -24,4 +24,27 @@ func ChangeStr(src, des []byte) {
         }
     }
     fmt.Println(res[n][m])
+    return res[n][m]
+}
+
+func SChangeStr(src, des []byte) int {
+    n, m := len(src), len(des)
+    res := make([]int, m+1)
+    last := make([]int, m+1)
+    for i := 1; i <= m; i ++ {
+        res[i], last[i] = i, i
+    }
+
+    for i := 0; i < n; i ++ {
+        res[0] = i+1
+        for j := 0; j < m; j ++ {
+            if src[i] == des[j] {
+                res[j+1] = minArry(last[j], res[j+1]+1, res[j]+1)
+            } else {
+                res[j+1] = minArry(last[j] + 1, res[j+1]+1, res[j]+1)
+            }
+            last[j] = res[j]
+        }
+    }
+    return res[m]
 }
