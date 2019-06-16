@@ -33,6 +33,8 @@ package KMP
         3. 否则回溯k=next[k]，继续步骤2，直到p = len(ptr) - 1;
  */
 
+// calNext getNext，同一种思想，两种不同的写法
+
 func calNext(str string) []int {
     slen := len(str)
     next := make([]int, slen)

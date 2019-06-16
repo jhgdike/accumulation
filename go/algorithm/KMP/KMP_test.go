@@ -8,10 +8,14 @@ import (
 func TestCalNext(t *testing.T) {
     s := "ababaca"
     fmt.Println(calNext(s))
+    s = "abababa"
+    fmt.Println(calNext(s))
 }
 
 func TestGetNext(t *testing.T) {
     s := "ababaca"
+    fmt.Println(getNext(s))
+    s = "abababa"
     fmt.Println(getNext(s))
 }
 
