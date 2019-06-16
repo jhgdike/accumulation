@@ -17,9 +17,9 @@ func ChangeStr(src, des []byte) int {
     for i := 0; i < n; i ++ {
         for j := 0; j < m; j ++ {
             if src[i] == des[j] {
-                res[i+1][j+1] = minArry(res[i][j], res[i][j+1]+1, res[i+1][j]+1)
+                res[i+1][j+1] = minArray(res[i][j], res[i][j+1]+1, res[i+1][j]+1)
             } else {
-                res[i+1][j+1] = minArry(res[i][j] + 1, res[i][j+1]+1, res[i+1][j]+1)
+                res[i+1][j+1] = minArray(res[i][j] + 1, res[i][j+1]+1, res[i+1][j]+1)
             }
         }
     }
@@ -39,9 +39,9 @@ func SChangeStr(src, des []byte) int {
         res[0] = i+1
         for j := 0; j < m; j ++ {
             if src[i] == des[j] {
-                res[j+1] = minArry(last[j], res[j+1]+1, res[j]+1)
+                res[j+1] = minArray(last[j], res[j+1]+1, res[j]+1)
             } else {
-                res[j+1] = minArry(last[j] + 1, res[j+1]+1, res[j]+1)
+                res[j+1] = minArray(last[j] + 1, res[j+1]+1, res[j]+1)
             }
             last[j] = res[j]
         }
