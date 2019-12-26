@@ -3,9 +3,10 @@ package stack
 import "testing"
 
 func TestStack(t *testing.T) {
+	println("aaaaa")
 	stack := NewItemStack(5)
 	for i:= 0; i < 5; i ++ {
-		stack.Push(1)
+		stack.Push(i)
 	}
 	err := stack.Push(6)
 	if err == nil {
@@ -20,5 +21,5 @@ func TestStack(t *testing.T) {
 	if err == nil {
 		t.Fatal("stack should be empty, but still can be pop")
 	}
-	t.Log(v)
+	t.Log(v, err)
 }
